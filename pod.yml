@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-demo
+spec:
+  containers:
+    - image: barelyenough/heregoesnothing:2.6
+      name: spring-demo
+      imagePullPolicy: Always
+      resources: {}
+      ports:
+        - containerPort: 9292

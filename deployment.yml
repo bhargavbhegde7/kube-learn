@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: spring-demo
+  name: spring-demo
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: spring-demo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: spring-demo
+    spec:
+      containers:
+        - image: barelyenough/heregoesnothing:2.6
+          name: spring-demo
+          imagePullPolicy: Always
+          resources: {}
+          ports:
+            - containerPort: 9092
+status: {}
