@@ -3,6 +3,16 @@
 ### To build the docker image
 ```docker build --build-arg JAR_FILE=target/*.jar -t barelyenough/heregoesnothing:2.6 <target directory>```
 
+
+### Run a busybox with curl ###
+kubectl run -i --tty --image radial/busyboxplus:curl dns-test-new --restart=Never --rm
+
+
+### To login into the shell of minikube ###
+minikube ssh
+
+
+
 ### To run the docker image after building it
 detached mode : 
 ```docker run -d -p 9092:9092 -t barelyenough/heregoesnothing:2.6```
