@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoheadless
+  labels:
+    app: demoapp
+spec:
+  ports:
+  - port: 9092
+    name: demoapp
+  clusterIP: None
+  selector:
+    app: demoapp
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: demoaoo
+spec:
+  serviceName: "demoheadless"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demoapp
+  template:
+    metadata:
+      labels:
+        app: demoapp
+    spec:
+      containers:
+      - name: demoapp
+        image: barelyenough/heregoesnothing:2.6
+        ports:
+        - containerPort: 9092
+          name: demoapp
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+
